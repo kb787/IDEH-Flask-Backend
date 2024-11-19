@@ -4,6 +4,12 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
 from flask_sqlalchemy import SQLAlchemy
 from flask_dance.consumer import oauth_error
+from modules.web_application.api.prompt_routes import prompt_bp
+from modules.web_application.api.user_routes import user_bp
+from modules.web_application.api.scrapping_routes import scrape_bp
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config["secret_key"] = os.getenv("secret_key")
@@ -25,6 +31,9 @@ facebook_blueprint_obj = make_facebook_blueprint(
 
 app.register_blueprint(google_blueprint_obj, url_prefix="/google_login")
 app.register_blueprint(facebook_blueprint_obj, url_prefix="/facebook_login")
+app.register_blueprint(user_bp)
+app.register_blueprint(prompt_bp)
+app.register_blueprint(scrape_bp)
 
 
 @oauth_error.connect_via(google_blueprint_obj)
