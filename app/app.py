@@ -1,9 +1,13 @@
 import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from flask import Flask, redirect, url_for
 from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
 from flask_sqlalchemy import SQLAlchemy
 from flask_dance.consumer import oauth_error
+
 from modules.web_application.api.prompt_routes import prompt_bp
 from modules.web_application.api.user_routes import user_bp
 from modules.web_application.api.scrapping_routes import scrape_bp

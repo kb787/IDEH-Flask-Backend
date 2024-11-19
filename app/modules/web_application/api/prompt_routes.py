@@ -1,7 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.modules.web_application.methods.prompt_methods import (
-    PromptService,
-)
+from app.modules.web_application.methods.prompt_methods import PromptService
 
 prompt_bp = Blueprint("prompt", __name__)
 processor = PromptService()
